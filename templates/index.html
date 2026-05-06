@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sequence Analyzer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-5">
+    <div class="container" style="max-width: 600px;">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">🧬 Sequence Analyzer</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <label>Nucleotide Sequence</label>
+                    <input type="text" name="seq" class="form-control mb-3" placeholder="e.g. ATGCGT" required>
+                    <button type="submit" class="btn btn-success w-100">Analyze Sequence</button>
+                </form>
+
+                {% if data %}
+                <div class="alert alert-success mt-3" style="word-break: break-all;">
+                    <strong>Type:</strong> {{ data.type }}<br>
+                    {% if data.type == 'DNA' %}
+                        <strong>mRNA:</strong> {{ data.mrna }}<br>
+                        <strong>tRNA:</strong> {{ data.trna }}<br>
+                        <strong>Amino (3):</strong> {{ data.amino_3 }}<br>
+                        <strong>Protein (1):</strong> {{ data.amino_1 }}
+                    {% else %}
+                        <strong>Complement:</strong> {{ data.comp }}<br>
+                        <strong>Rev. Complement:</strong> {{ data.rev_comp }}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
